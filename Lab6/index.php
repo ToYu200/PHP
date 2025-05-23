@@ -1,17 +1,18 @@
 <?php
-setcookie('birthday', '', time() - 1);
-if (isset ($_POST["birthday"])) {
+if (isset($_POST["birthday"])) {
     $birthday = $_POST['birthday'];
     setcookie('birthday', $birthday, time() + 3600 * 24 * 365); // Куки на год
     echo 'Дата рождения сохранена, обновите страницу';
-} elseif (isset ($_COOKIE['birthday'])) {
+} elseif (isset($_COOKIE['birthday'])) {
     $birthday = $_COOKIE['birthday'];
     $today = new DateTime();
-    $bday = new DateTime($birthday);
-    $bday->modify('+1 year');
-
-    $diff = $today->diff($bday); // день рождения минус текущая дата
-    print_r($diff);
+    // День рождения в этом году
+    $bday = new DateTime(date('Y') . '-' . date('m-d', strtotime($birthday)));
+    // Если день рождения уже прошёл в этом году — берём следующий год
+    if ($bday < $today) {
+        $bday->modify('+1 year');
+    }
+    $diff = $today->diff($bday);
     $days = $diff->days;
 
     if ($days == 0) {

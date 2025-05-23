@@ -54,7 +54,7 @@ class ArticleController
         $article->setText($_POST['text']);
         $article->setAuthorId($_POST['authorId']);
         $article->save();
-        header('Location:/php/Project/www/articles');
+        header('Location:/phptest/Project/www/articles');
     }
 
     public function edit(int $id)
@@ -70,13 +70,13 @@ class ArticleController
         $article->setText($_POST['text']);
         $article->setAuthorId($_POST['authorId']);
         $article->save();
-        header('Location:/php/Project/www/article/' . $article->getId());
+        header('Location:/phptest/Project/www/article/' . $article->getId());
     }
 
     public function delete(int $id)
     {
         $article = Article::getById($id);
         $article->delete();
-        header('Location:/php/Project/www/articles');
+        header('Location:/phptest/Project/www/articles');
     }
 }

@@ -25,7 +25,7 @@ class CommentController
         $comment->setText($_POST['text']);
         $comment->save();
         $article_id = $comment->getArticleId();
-        header('Location:/php/Project/www/article/' . $article_id);
+        header('Location:/phptest/Project/www/article/' . $article_id);
     }
 
     public function edit(int $id)
@@ -40,7 +40,7 @@ class CommentController
         $comment = Comment::getById($id);
         $comment->delete();
         $article_id = $comment->getArticleId();
-        header('Location:/php/Project/www/article/' . $article_id);
+        header('Location:/phptest/Project/www/article/' . $article_id);
     }
 
     public static function getTableName()
